@@ -7,7 +7,6 @@ export function Tech() {
             <TechList text={"HTML"}/>
             <TechList text={"REACT"}/>
             <TechList text={"JS"}/>
-
         </ul>
     )
 }

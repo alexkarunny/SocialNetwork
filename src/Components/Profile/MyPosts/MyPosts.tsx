@@ -10,10 +10,8 @@ export function MyPosts() {
                 new posts
             </div>
             <div className={classes.posts}>
-                <Post/>
-                <Post/>
-                <Post/>
-
+                <Post message={"Hi, how are you"} likes={10}/>
+                <Post message={"It's my first post"} likes={15}/>
             </div>
         </div>
     )

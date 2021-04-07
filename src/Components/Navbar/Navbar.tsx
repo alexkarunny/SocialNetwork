@@ -6,7 +6,7 @@ export function Navbar() {
     return(
         <nav className={classes.nav}>
             <NavbarItem title={'Profile'} link={'/profile'} />
-            <NavbarItem title={'Messages'} link={'/dialogs'} />
+            <NavbarItem title={'Dialog'} link={'/dialogs'} />
             <NavbarItem title={'News'} link={'/news'} />
             <NavbarItem title={'Music'} link={'/music'} />
             <NavbarItem title={'Settings'} link={'/settings'} />

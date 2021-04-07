@@ -17,7 +17,7 @@ function App() {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path={'/profile'} render={() => <Profile/>}/>
-                    <Route path={'/dialogs'} render={() => <Dialogs title={'Dialogs'}/>}/>
+                    <Route path={'/dialogs'} render={() => <Dialogs titleDialog={'Dialogs'} titleMessage={'Messages'}/>}/>
                     <Route path={'/news'} render={() => <News title={'News'}/>}/>
                     <Route path={'/music'} render={() => <Music title={'Music'}/>}/>
                     <Route path={'/settings'} render={() => <Settings title={'Settings'}/>}/>

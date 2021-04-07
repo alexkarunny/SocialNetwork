@@ -2,6 +2,7 @@ import React from "react";
 import classes from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
+import {NavLink} from "react-router-dom";
 
 
 type DialogsPropsType = {
@@ -14,10 +15,10 @@ export function Dialogs(props: DialogsPropsType) {
         <div className={classes.title}>
             <div className={classes.dialogs}>
                 <h3>{props.titleDialog}</h3>
-                <Dialog dialogName={'Alex'}/>
-                <Dialog dialogName={'Sveta'}/>
-                <Dialog dialogName={'Alexei'}/>
-                <Dialog dialogName={'Nikita'}/>
+                <NavLink to={'/dialogs/1'}><Dialog dialogName={'Alex'}/></NavLink>
+                <NavLink to={'/dialogs/2'}><Dialog dialogName={'Sveta'}/></NavLink>
+                <NavLink to={'/dialogs/3'}><Dialog dialogName={'Alexei'}/></NavLink>
+                <NavLink to={'/dialogs/4'}><Dialog dialogName={'Nikita'}/></NavLink>
             </div>
             <div className={classes.messages}>
                 <h3>{props.titleMessage}</h3>

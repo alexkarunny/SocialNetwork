@@ -1,12 +1,11 @@
 import React from "react";
-import classes from './Dialogs.module.css'
+import classes from './News.module.css'
 
-
-type DialogsPropsType = {
+type NewsPropsType = {
     title: string
 }
 
-export function Dialogs(props: DialogsPropsType) {
+export function News(props: NewsPropsType) {
     return (
         <div className={classes.title}>
             {props.title}

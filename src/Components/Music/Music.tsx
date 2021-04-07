@@ -1,12 +1,11 @@
 import React from "react";
-import classes from './Dialogs.module.css'
+import classes from './Music.module.css'
 
-
-type DialogsPropsType = {
+type MusicPropsType = {
     title: string
 }
 
-export function Dialogs(props: DialogsPropsType) {
+export function Music(props: MusicPropsType) {
     return (
         <div className={classes.title}>
             {props.title}

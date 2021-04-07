@@ -1,12 +1,11 @@
 import React from "react";
-import classes from './Dialogs.module.css'
+import classes from './Settings.module.css'
 
-
-type DialogsPropsType = {
+type SettingsPropsType = {
     title: string
 }
 
-export function Dialogs(props: DialogsPropsType) {
+export function Settings(props: SettingsPropsType) {
     return (
         <div className={classes.title}>
             {props.title}

@@ -4,10 +4,14 @@ import {Post} from "./Post/Post";
 
 export function MyPosts() {
     return (
-        <div>
-            My posts
+        <div className={classes.myPostsBlock}>
+            <h3>My posts</h3>
             <div>
-                new posts
+                <div>
+                    <textarea></textarea></div>
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
             <div className={classes.posts}>
                 <Post message={"Hi, how are you"} likes={10}/>

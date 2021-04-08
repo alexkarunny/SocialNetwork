@@ -15,10 +15,11 @@ export function Dialogs(props: DialogsPropsType) {
         <div className={classes.title}>
             <div className={classes.dialogs}>
                 <h3>{props.titleDialog}</h3>
-                <NavLink to={'/dialogs/1'}><Dialog dialogName={'Alex'}/></NavLink>
-                <NavLink to={'/dialogs/2'}><Dialog dialogName={'Sveta'}/></NavLink>
-                <NavLink to={'/dialogs/3'}><Dialog dialogName={'Alexei'}/></NavLink>
-                <NavLink to={'/dialogs/4'}><Dialog dialogName={'Nikita'}/></NavLink>
+                <Dialog dialogName={'Alex'} id={'1'}/>
+                <Dialog dialogName={'Sveta'} id={'2'}/>
+                <Dialog dialogName={'Alexei'} id={'3'}/>
+                <Dialog dialogName={'Viktor'} id={'4'}/>
+
             </div>
             <div className={classes.messages}>
                 <h3>{props.titleMessage}</h3>

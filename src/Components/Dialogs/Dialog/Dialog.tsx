@@ -1,12 +1,16 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import classes from './Dialog.module.css'
 
 type DialogPropsType = {
     dialogName: string
+    id: string
 }
 
 export function Dialog(props: DialogPropsType) {
     return (
-        <div>{props.dialogName}</div>
+        <NavLink to={`/dialogs/${props.id}`}>
+            <div id={props.id}>{props.dialogName}</div>
+        </NavLink>
     )
 }

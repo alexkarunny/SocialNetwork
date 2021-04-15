@@ -9,7 +9,7 @@ type DialogPropsType = {
 
 export function Dialog(props: DialogPropsType) {
     return (
-        <NavLink to={`/dialogs/${props.id}`}>
+        <NavLink to={`/dialogs/${props.id}`} className={classes.item} activeClassName={classes.active}>
             <div id={props.id}>{props.dialogName}</div>
         </NavLink>
     )

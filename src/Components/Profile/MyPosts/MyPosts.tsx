@@ -1,20 +1,14 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {PostsPropsType} from "../../../index";
 
-type PostDataPropsType = {
-    message: string
-    likes: number
+type MyPostsPropsType = {
+    post: Array<PostsPropsType>
 }
 
-export function MyPosts() {
-
-    const post: Array<PostDataPropsType> = [
-        { message: 'Hi, how are you', likes: 10},
-        { message: 'It\'s my first post', likes: 15},
-        { message: 'It\'s my second post', likes: 5},
-    ]
-
+export function MyPosts(props: MyPostsPropsType) {
+    const post = props.post
     const postElements = post.map(p => <Post message={p.message} likes={p.likes}/>)
 
     return (

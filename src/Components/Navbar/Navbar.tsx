@@ -1,15 +1,18 @@
 import React from "react";
 import classes from './Navbar.module.css'
 import {NavbarItem} from "./NavbarItem/NavbarItem";
+import {LinkItemsPropsType} from "../../index";
 
-export function Navbar() {
+type NavbarPropsType = {
+    navItem: Array<LinkItemsPropsType>
+}
+
+export function Navbar(props: NavbarPropsType) {
+    const navItem = props.navItem
+    const navItems = navItem.map(n => <NavbarItem link={n.link} title={n.title} />)
     return(
         <nav className={classes.nav}>
-            <NavbarItem title={'Profile'} link={'/profile'} />
-            <NavbarItem title={'Dialog'} link={'/dialogs'} />
-            <NavbarItem title={'News'} link={'/news'} />
-            <NavbarItem title={'Music'} link={'/music'} />
-            <NavbarItem title={'Settings'} link={'/settings'} />
+            {navItems}
         </nav>
     )
 }

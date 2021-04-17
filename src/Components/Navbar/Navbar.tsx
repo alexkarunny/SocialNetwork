@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './Navbar.module.css'
 import {NavbarItem} from "./NavbarItem/NavbarItem";
-import {LinkItemsPropsType} from "../../index";
+import {LinkItemsPropsType} from "../../redux/state";
 
 type NavbarPropsType = {
     navItem: Array<LinkItemsPropsType>

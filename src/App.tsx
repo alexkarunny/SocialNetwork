@@ -15,6 +15,7 @@ type AppPropsType = {
     messages: Array<MessagesPropsType>
     dialogs: Array<DialogPropsType>
     linkItems: Array<LinkItemsPropsType>
+    addPost: (postMessage: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -25,7 +26,7 @@ function App(props: AppPropsType) {
                 <Header/>
                 <Navbar navItem={props.linkItems}/>
                 <div className="app-wrapper-content">
-                    <Route path={'/profile'} render={() => <Profile posts={props.posts}/>}/>
+                    <Route path={'/profile'} render={() => <Profile posts={props.posts} addPost={props.addPost}/>}/>
                     <Route path={'/dialogs'} render={() => <Dialogs titleDialog={'Dialogs'} titleMessage={'Messages'}
                                                                     dialogs={props.dialogs}
                                                                     messages={props.messages}/>}/>

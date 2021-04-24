@@ -1,3 +1,4 @@
+import {v1} from "uuid";
 
 export type DialogPropsType = {
     id: string
@@ -5,11 +6,12 @@ export type DialogPropsType = {
 }
 
 export type MessagesPropsType = {
-    id: number
+    id: string
     message: string
 }
 
 export type PostsPropsType = {
+    id: string
     message: string
     likes: number
 }
@@ -41,16 +43,16 @@ export type RootStatePropsType = {
 export const state: RootStatePropsType = {
     profilePage: {
         posts: [
-            {message: 'Hi, how are you', likes: 10},
-            {message: 'It\'s my first post', likes: 15},
-            {message: 'It\'s my second post', likes: 5},
+            {id: v1(), message: 'Hi, how are you', likes: 10},
+            {id: v1(), message: 'It\'s my first post', likes: 15},
+            {id: v1(), message: 'It\'s my second post', likes: 5},
         ]
     },
     dialogsPage: {
         messages: [
-            {id: 1, message: 'Hello'},
-            {id: 2, message: 'I\'m fine. just not happy'},
-            {id: 3, message: 'I\'m fine.'}
+            {id: v1(), message: 'Hello'},
+            {id: v1(), message: 'I\'m fine. just not happy'},
+            {id: v1(), message: 'I\'m fine.'}
         ],
         dialogs: [
             {id: '1', name: 'Alex'},
@@ -71,4 +73,9 @@ export const state: RootStatePropsType = {
             {title: 'Settings', link: '/settings'},
         ]
     }
+}
+
+export const addPost = (postMessage: string) => {
+    const newPost: PostsPropsType = {id: v1(), message: postMessage, likes: 0 }
+    state.profilePage.posts.push(newPost)
 }

@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {state} from "./redux/state";
+import {addPost, state} from "./redux/state";
 
 ReactDOM.render(
     <React.StrictMode>
-        <App dialogs={state.dialogsPage.dialogs} linkItems={state.navbarPage.linkItems} messages={state.dialogsPage.messages} posts={state.profilePage.posts}/>
+        <App dialogs={state.dialogsPage.dialogs} linkItems={state.navbarPage.linkItems} messages={state.dialogsPage.messages} posts={state.profilePage.posts} addPost={addPost}/>
     </React.StrictMode>,
     document.getElementById('root')
 );

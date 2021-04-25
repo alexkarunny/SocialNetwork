@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {renderTree} from "../render";
 
 export type DialogPropsType = {
     id: string
@@ -78,4 +79,6 @@ export const state: RootStatePropsType = {
 export const addPost = (postMessage: string) => {
     const newPost: PostsPropsType = {id: v1(), message: postMessage, likes: 0 }
     state.profilePage.posts.push(newPost)
+    debugger
+    renderTree(state);
 }

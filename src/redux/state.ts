@@ -1,5 +1,7 @@
 import {v1} from "uuid";
-import {renderTree} from "../render";
+let renderTree = (state: RootStatePropsType) => {
+    console.log(state);
+}
 
 export type DialogPropsType = {
     id: string
@@ -91,3 +93,8 @@ export const addNewPostMessage = (newPostText: string) => {
     state.profilePage.newPostMessage = newPostText
     renderTree(state)
 }
+
+export const subscribe = (observer: (state: RootStatePropsType) => void) => {
+    renderTree = observer
+}
+

@@ -1,4 +1,7 @@
 import {v1} from "uuid";
+import {addNewMessageAC, addNewMessagePostAC, dialogsPageReducer} from "./dialogs-page-reducer";
+import {navbarPageReducer} from "./navbar-page-reducer";
+import {addNewPostMessageAC, addPostAC, profilePageReducer} from "./profile-page-reducer";
 
 export type DialogPropsType = {
     id: string
@@ -42,32 +45,11 @@ export type RootStatePropsType = {
     navbarPage: NavbarPagePropsType
 }
 
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof addNewPostMessageAC> | ReturnType<typeof addNewMessageAC> | ReturnType<typeof addNewMessagePostAC>
-
-export const addPostAC = (postMessage: string) => {
-    return {
-        type: 'ADD-POST',
-        postMessage: postMessage
-    } as const
-}
-export const addNewMessagePostAC = (newMessagePost: string) => {
-    return {
-        type: 'ADD-NEW-MESSAGE-POST',
-        newMessagePost: newMessagePost
-    } as const
-}
-export const addNewPostMessageAC = (newPostText: string) => {
-    return {
-        type: 'ADD-NEW-POST-MESSAGE',
-        newPostText: newPostText
-    } as const
-}
-export const addNewMessageAC = (newMessageText: string) => {
-    return {
-        type: 'ADD-NEW-MESSAGE',
-        newMessageText: newMessageText
-    } as const
-}
+export type ActionTypes =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof addNewPostMessageAC>
+    | ReturnType<typeof addNewMessageAC>
+    | ReturnType<typeof addNewMessagePostAC>
 
 export type StoreType = {
     _state: RootStatePropsType
@@ -124,23 +106,10 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostsPropsType = {id: v1(), message: action.postMessage, likes: 0}
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostMessage = ''
-            this._onChange();
-        } else if (action.type === 'ADD-NEW-POST-MESSAGE') {
-            this._state.profilePage.newPostMessage = action.newPostText
-            this._onChange()
-        } else if(action.type === 'ADD-NEW-MESSAGE') {
-            this._state.dialogsPage.newMessage = action.newMessageText
-            this._onChange()
-        } else if(action.type === 'ADD-NEW-MESSAGE-POST') {
-            const newMessage: MessagesPropsType = {id: v1(), message: action.newMessagePost}
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessage = ''
-            this._onChange()
-        }
+        this._state.profilePage = profilePageReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
+        this._state.navbarPage = navbarPageReducer(this._state.navbarPage, action)
+        this._onChange();
     }
 
 }

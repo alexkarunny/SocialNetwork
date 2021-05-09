@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {store} from "./redux/state";
+import {ActionTypes, store} from "./redux/state";
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -14,9 +14,11 @@ export const renderTree = () => {
                  linkItems={state.navbarPage.linkItems}
                  messages={state.dialogsPage.messages}
                  posts={state.profilePage.posts}
-                 addPost={store.addPost.bind(store)}
+                 //addPost={store.addPost.bind(store)}
+                 dispatch={store.dispatch.bind(store)}
                  newPostMessage={state.profilePage.newPostMessage}
-                 addNewPostMessage={store.addNewPostMessage.bind(store)}
+                // addNewPostMessage={store.addNewPostMessage.bind(store)}
+
             />
         </React.StrictMode>,
         document.getElementById('root')

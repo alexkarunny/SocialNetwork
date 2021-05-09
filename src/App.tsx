@@ -8,15 +8,14 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
-import {DialogPropsType, LinkItemsPropsType, MessagesPropsType, PostsPropsType} from "./redux/state";
+import {ActionTypes, DialogPropsType, LinkItemsPropsType, MessagesPropsType, PostsPropsType} from "./redux/state";
 
 type AppPropsType = {
     posts: Array<PostsPropsType>
     messages: Array<MessagesPropsType>
     dialogs: Array<DialogPropsType>
     linkItems: Array<LinkItemsPropsType>
-    addPost: (postMessage: string) => void
-    addNewPostMessage: (newPostText: string) => void
+    dispatch: (action: ActionTypes) => void
     newPostMessage: string
 }
 
@@ -29,9 +28,11 @@ function App(props: AppPropsType) {
                 <Navbar navItem={props.linkItems}/>
                 <div className="app-wrapper-content">
                     <Route path={'/profile'} render={() => <Profile posts={props.posts}
-                                                                    addPost={props.addPost}
+                                                                    dispatch={props.dispatch}
                                                                     newPostMessage={props.newPostMessage}
-                                                                    addNewPostMessage={props.addNewPostMessage}/>}/>
+                                                            />
+                                                    }
+                    />
                     <Route path={'/dialogs'} render={() => <Dialogs titleDialog={'Dialogs'}
                                                                     titleMessage={'Messages'}
                                                                     dialogs={props.dialogs}

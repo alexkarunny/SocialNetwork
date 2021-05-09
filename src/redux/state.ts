@@ -41,17 +41,23 @@ export type RootStatePropsType = {
     navbarPage: NavbarPagePropsType
 }
 
-export type AddPostActionType = {
-    type: 'ADD-POST'
-    postMessage: string
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof addNewPostMessageAC>
+
+export const addPostAC = (postMessage: string) => {
+    return {
+        type: 'ADD-POST',
+        postMessage: postMessage
+    } as const
 }
 
-export type AddNewPostMessageActionType = {
-    type: 'ADD-NEW-POST-MESSAGE'
-    newPostText: string
+export const addNewPostMessageAC = (newPostText: string) => {
+    return {
+        type: 'ADD-NEW-POST-MESSAGE',
+        newPostText: newPostText
+    } as const
 }
 
-export type ActionTypes = AddPostActionType | AddNewPostMessageActionType
+
 
 export type StoreType = {
     _state: RootStatePropsType

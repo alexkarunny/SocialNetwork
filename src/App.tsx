@@ -17,6 +17,7 @@ type AppPropsType = {
     linkItems: Array<LinkItemsPropsType>
     dispatch: (action: ActionTypes) => void
     newPostMessage: string
+    newMessage: string
 }
 
 function App(props: AppPropsType) {
@@ -31,12 +32,18 @@ function App(props: AppPropsType) {
                                                                     dispatch={props.dispatch}
                                                                     newPostMessage={props.newPostMessage}
                                                             />
-                                                    }
+                                                     }
                     />
                     <Route path={'/dialogs'} render={() => <Dialogs titleDialog={'Dialogs'}
                                                                     titleMessage={'Messages'}
                                                                     dialogs={props.dialogs}
-                                                                    messages={props.messages}/>}/>
+                                                                    messages={props.messages}
+                                                                    newMessage={props.newMessage}
+                                                                    dispatch={props.dispatch}
+                                                             />
+
+                                                     }
+                    />
                     <Route path={'/news'} render={() => <News title={'News'}/>}/>
                     <Route path={'/music'} render={() => <Music title={'Music'}/>}/>
                     <Route path={'/settings'} render={() => <Settings title={'Settings'}/>}/>

@@ -22,6 +22,7 @@ export type LinkItemsPropsType = {
 }
 
 export type DialogsPagePropsType = {
+    newMessage: string
     messages: Array<MessagesPropsType>
     dialogs: Array<DialogPropsType>
 }
@@ -41,7 +42,7 @@ export type RootStatePropsType = {
     navbarPage: NavbarPagePropsType
 }
 
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof addNewPostMessageAC>
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof addNewPostMessageAC> | ReturnType<typeof addNewMessageAC> | ReturnType<typeof addNewMessagePostAC>
 
 export const addPostAC = (postMessage: string) => {
     return {
@@ -49,15 +50,24 @@ export const addPostAC = (postMessage: string) => {
         postMessage: postMessage
     } as const
 }
-
+export const addNewMessagePostAC = (newMessagePost: string) => {
+    return {
+        type: 'ADD-NEW-MESSAGE-POST',
+        newMessagePost: newMessagePost
+    } as const
+}
 export const addNewPostMessageAC = (newPostText: string) => {
     return {
         type: 'ADD-NEW-POST-MESSAGE',
         newPostText: newPostText
     } as const
 }
-
-
+export const addNewMessageAC = (newMessageText: string) => {
+    return {
+        type: 'ADD-NEW-MESSAGE',
+        newMessageText: newMessageText
+    } as const
+}
 
 export type StoreType = {
     _state: RootStatePropsType
@@ -78,6 +88,7 @@ export const store: StoreType = {
             ]
         },
         dialogsPage: {
+            newMessage: '',
             messages: [
                 {id: v1(), message: 'Hello'},
                 {id: v1(), message: 'I\'m fine. just not happy'},
@@ -114,13 +125,20 @@ export const store: StoreType = {
     },
     dispatch(action) {
         if (action.type === 'ADD-POST') {
-            debugger
             const newPost: PostsPropsType = {id: v1(), message: action.postMessage, likes: 0}
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostMessage = ''
             this._onChange();
         } else if (action.type === 'ADD-NEW-POST-MESSAGE') {
             this._state.profilePage.newPostMessage = action.newPostText
+            this._onChange()
+        } else if(action.type === 'ADD-NEW-MESSAGE') {
+            this._state.dialogsPage.newMessage = action.newMessageText
+            this._onChange()
+        } else if(action.type === 'ADD-NEW-MESSAGE-POST') {
+            const newMessage: MessagesPropsType = {id: v1(), message: action.newMessagePost}
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessage = ''
             this._onChange()
         }
     }

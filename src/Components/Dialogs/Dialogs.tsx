@@ -1,8 +1,8 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import classes from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
-import {DialogPropsType, MessagesPropsType} from "../../redux/state";
+import {ActionTypes, addNewMessageAC, addNewMessagePostAC, DialogPropsType, MessagesPropsType} from "../../redux/state";
 
 
 type DialogsPropsType = {
@@ -10,6 +10,8 @@ type DialogsPropsType = {
     titleMessage: string
     dialogs: Array<DialogPropsType>
     messages: Array<MessagesPropsType>
+    newMessage: string
+    dispatch: (action: ActionTypes) => void
 }
 
 export function Dialogs(props: DialogsPropsType) {
@@ -20,10 +22,17 @@ export function Dialogs(props: DialogsPropsType) {
     const dialogsElements = dialogs.map( d => <Dialog dialogName={d.name} id={d.id}/>)
     const messagesElements =  messages.map( m => <Message messageText={m.message}/>)
 
-    let newMessage = React.createRef<HTMLTextAreaElement>()
-    const newMessages = () => {
-        alert(newMessage.current?.value)
+    const addMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+            props.dispatch(addNewMessageAC(e.currentTarget.value))
     }
+
+    const addMessagePost = () => {
+        if(props.newMessage) {
+            props.dispatch(addNewMessagePostAC(props.newMessage))
+        }
+
+    }
+
 
     return (
         <div className={classes.title}>
@@ -34,8 +43,10 @@ export function Dialogs(props: DialogsPropsType) {
             <div className={classes.messages}>
                 <h3>{props.titleMessage}</h3>
                 {messagesElements}
-                <textarea ref={newMessage}></textarea>
-                <button onClick={newMessages}>send</button>
+                <textarea value={props.newMessage}
+                          onChange={addMessageText}
+                />
+                <button onClick={addMessagePost} >send</button>
             </div>
         </div>
     )

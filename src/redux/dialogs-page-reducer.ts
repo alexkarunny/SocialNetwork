@@ -18,7 +18,25 @@ export const addNewMessagePostAC = (newMessagePost: string) => {
     } as const
 }
 
-export const dialogsPageReducer = (state: DialogsPagePropsType, action: ActionTypes) => {
+const initialState: DialogsPagePropsType = {
+    newMessage: '',
+    messages: [
+        {id: v1(), message: 'Hello'},
+        {id: v1(), message: 'I\'m fine. just not happy'},
+        {id: v1(), message: 'I\'m fine.'}
+    ],
+    dialogs: [
+        {id: '1', name: 'Alex'},
+        {id: '2', name: 'Alexei'},
+        {id: '3', name: 'Ivan'},
+        {id: '4', name: 'Katya'},
+        {id: '5', name: 'Jenya'},
+        {id: '6', name: 'Andrew'},
+
+    ]
+}
+
+export const dialogsPageReducer = (state: DialogsPagePropsType = initialState, action: ActionTypes) => {
 
     switch (action.type) {
         case ADD_NEW_MESSAGE:

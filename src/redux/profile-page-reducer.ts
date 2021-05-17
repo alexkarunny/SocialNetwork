@@ -19,7 +19,16 @@ export const addNewPostMessageAC = (newPostText: string) => {
     } as const
 }
 
-export const profilePageReducer = (state: ProfilePagePropsType, action: ActionTypes) => {
+const initialState: ProfilePagePropsType = {
+    newPostMessage: '',
+    posts: [
+        {id: v1(), message: 'Hi, how are you', likes: 10},
+        {id: v1(), message: 'It\'s my first post', likes: 15},
+        {id: v1(), message: 'It\'s my second post', likes: 5},
+    ]
+}
+
+export const profilePageReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes) => {
 
     switch (action.type) {
         case ADD_POST:

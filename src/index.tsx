@@ -1,23 +1,22 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {store} from "./redux/redux-store";
+import {AppStateType, store} from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 
 
-
 export const renderTree = () => {
-    let state = store.getState()
+    let state: AppStateType = store.getState()
     ReactDOM.render(
         <React.StrictMode>
-            <App dialogs={state.dialogsPageReducer.dialogs}
-                 linkItems={state.navbarPageReducer.linkItems}
-                 messages={state.dialogsPageReducer.messages}
-                 posts={state.profilePageReducer.posts}
+            <App dialogs={state.dialogsPage.dialogs}
+                 linkItems={state.navbarPage.linkItems}
+                 messages={state.dialogsPage.messages}
+                 posts={state.profilePage.posts}
                  dispatch={store.dispatch.bind(store)}
-                 newPostMessage={state.profilePageReducer.newPostMessage}
-                 newMessage={state.dialogsPageReducer.newMessage}
+                 newPostMessage={state.profilePage.newPostMessage}
+                 newMessage={state.dialogsPage.newMessage}
             />
         </React.StrictMode>,
         document.getElementById('root')

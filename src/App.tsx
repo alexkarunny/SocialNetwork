@@ -3,14 +3,14 @@ import './App.css';
 import {Header} from "./Components/Header/Header";
 import {Navbar} from "./Components/Navbar/Navbar";
 import {Profile} from "./Components/Profile/Profile";
-import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {ActionTypes, DialogPropsType, LinkItemsPropsType, MessagesPropsType, PostsPropsType} from "./redux/state";
+import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
-type AppPropsType = {
+export type AppPropsType = {
     posts: Array<PostsPropsType>
     messages: Array<MessagesPropsType>
     dialogs: Array<DialogPropsType>
@@ -34,7 +34,8 @@ function App(props: AppPropsType) {
                                                             />
                                                      }
                     />
-                    <Route path={'/dialogs'} render={() => <Dialogs titleDialog={'Dialogs'}
+                    <Route path={'/dialogs'} render={() => <DialogsContainer
+                                                                    titleDialog={'Dialogs'}
                                                                     titleMessage={'Messages'}
                                                                     dialogs={props.dialogs}
                                                                     messages={props.messages}

@@ -12,5 +12,4 @@ const rootReducer = combineReducers({
     profilePage: profilePageReducer
 })
 
-
 export let store: StoreType = createStore(rootReducer);

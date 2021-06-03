@@ -44,22 +44,28 @@ export type MapStateToPropsType = {
     dialogs: Array<DialogPropsType>
     messages: Array<MessagesPropsType>
     newMessage: string
-}
 
+}
 export type MapDispatchToPropsType = {
     addMessageText: (text: string) => void
     addMessagePost: () => void
-}
 
-const mapStateToProps = ((state: AppStateType): MapStateToPropsType => {
+}
+export type OwnPropsType = {
+    titleDialog: string,
+    titleMessage: string
+}
+export type PropsType = MapStateToPropsType & MapDispatchToPropsType & OwnPropsType
+
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
-        newMessage: state.dialogsPage.newMessage
+        newMessage: state.dialogsPage.newMessage,
+
     }
 
-})
-
+}
 const mapDispatchToProps = (dispatch: (action: ActionTypes) => void, state: AppStateType): MapDispatchToPropsType => {
     return {
         addMessageText: (text: string) => {
@@ -73,5 +79,11 @@ const mapDispatchToProps = (dispatch: (action: ActionTypes) => void, state: AppS
         }
     }
 }
+const ownProps = () :OwnPropsType => {
+    return {
+        titleDialog: 'Dialogs',
+        titleMessage: 'Messages',
+    }
+}
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps, ownProps)(Dialogs)

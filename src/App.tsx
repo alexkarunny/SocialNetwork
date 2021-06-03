@@ -35,12 +35,12 @@ function App(props: AppPropsType) {
                                                      }
                     />
                     <Route path={'/dialogs'} render={() => <DialogsContainer
-                                                                    titleDialog={'Dialogs'}
-                                                                    titleMessage={'Messages'}
-                                                                    dialogs={props.dialogs}
-                                                                    messages={props.messages}
-                                                                    newMessage={props.newMessage}
-                                                                    dispatch={props.dispatch}
+                                                                   // titleDialog={'Dialogs'}
+                                                                    //titleMessage={'Messages'}
+                                                                    //dialogs={props.dialogs}
+                                                                   // messages={props.messages}
+                                                                 //   newMessage={props.newMessage}
+                                                                 //   dispatch={props.dispatch}
                                                              />
 
                                                      }

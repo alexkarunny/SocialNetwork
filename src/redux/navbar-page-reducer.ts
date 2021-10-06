@@ -1,4 +1,4 @@
-import {ActionTypes, NavbarPagePropsType} from "./state";
+import {NavbarPagePropsType} from "./state";
 
 const initialState: NavbarPagePropsType = {
     linkItems: [
@@ -10,6 +10,6 @@ const initialState: NavbarPagePropsType = {
     ]
 }
 
-export const navbarPageReducer = (state: NavbarPagePropsType = initialState, action: ActionTypes) => {
+export const navbarPageReducer = (state: NavbarPagePropsType = initialState, action: any) => {
     return state;
 }

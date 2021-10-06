@@ -7,17 +7,14 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
-import {ActionTypes, DialogPropsType, LinkItemsPropsType, MessagesPropsType, PostsPropsType} from "./redux/state";
+import {DialogPropsType, LinkItemsPropsType, MessagesPropsType, PostsPropsType} from "./redux/state";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 export type AppPropsType = {
     posts: Array<PostsPropsType>
-    messages: Array<MessagesPropsType>
-    dialogs: Array<DialogPropsType>
     linkItems: Array<LinkItemsPropsType>
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: any) => void
     newPostMessage: string
-    newMessage: string
 }
 
 function App(props: AppPropsType) {
@@ -31,19 +28,14 @@ function App(props: AppPropsType) {
                     <Route path={'/profile'} render={() => <Profile posts={props.posts}
                                                                     dispatch={props.dispatch}
                                                                     newPostMessage={props.newPostMessage}
-                                                            />
-                                                     }
                     />
-                    <Route path={'/dialogs'} render={() => <DialogsContainer
-                                                                   // titleDialog={'Dialogs'}
-                                                                    //titleMessage={'Messages'}
-                                                                    //dialogs={props.dialogs}
-                                                                   // messages={props.messages}
-                                                                 //   newMessage={props.newMessage}
-                                                                 //   dispatch={props.dispatch}
-                                                             />
-
-                                                     }
+                    }
+                    />
+                    <Route path={'/dialogs'} render={() => (
+                        <DialogsContainer
+                            titleDialog={'Dialogs'}
+                            titleMessage={'Messages'}
+                        />)}
                     />
                     <Route path={'/news'} render={() => <News title={'News'}/>}/>
                     <Route path={'/music'} render={() => <Music title={'Music'}/>}/>

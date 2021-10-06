@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {ActionTypes, PostsPropsType, ProfilePagePropsType} from "./state";
+import {PostsPropsType, ProfilePagePropsType} from "./state";
 
 const ADD_POST = 'ADD_POST';
 const ADD_NEW_POST_MESSAGE = 'ADD_NEW_POST_MESSAGE';
@@ -28,17 +28,21 @@ const initialState: ProfilePagePropsType = {
     ]
 }
 
-export const profilePageReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes) => {
+type AllActionType =
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof addNewPostMessageAC>
+
+export const profilePageReducer = (state: ProfilePagePropsType = initialState, action: AllActionType) => {
 
     switch (action.type) {
         case ADD_POST:
             const newPost: PostsPropsType = {id: v1(), message: action.postMessage, likes: 0}
             state.posts.push(newPost)
             state.newPostMessage = ''
-            return state;
+            return {...state};
         case ADD_NEW_POST_MESSAGE:
             state.newPostMessage = action.newPostText
-            return state;
+            return {...state};
         default:
             return state
     }

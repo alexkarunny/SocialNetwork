@@ -4,46 +4,45 @@ import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
 import {DialogPropsType, MessagesPropsType} from "../../redux/state";
 
-
-type DialogsPropsType = {
+type PropsType = {
     titleDialog: string
     titleMessage: string
-    dialogs: Array<DialogPropsType>
-    messages: Array<MessagesPropsType>
+    dialogs: DialogPropsType[]
+    messages: MessagesPropsType[]
     newMessage: string
-    addMessagePost: () => void
-    addMessageText: (text: string) => void
+    addNewMessagePost: () => void
+    onChangeMessage: (text: string) => void
 }
 
-export function Dialogs(props: DialogsPropsType) {
-
+export function Dialogs(props: PropsType) {
     const dialogs = props.dialogs
     const messages = props.messages
 
-    const dialogsElements = dialogs.map(d => <Dialog dialogName={d.name} id={d.id}/>)
-    const messagesElements = messages.map(m => <Message messageText={m.message}/>)
+    const dialogsElements = dialogs.map(dialog => <Dialog key={dialog.id} dialogName={dialog.name} id={dialog.id}/>)
+    const messagesElements = messages.map(message => <Message key={message.id} messageText={message.message}/>)
 
-    const addMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.addMessageText(e.currentTarget.value)
+    const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChangeMessage(e.currentTarget.value)
     }
 
     const addMessagePost = () => {
-        props.addMessagePost()
-
+        props.addNewMessagePost()
     }
-
 
     return (
         <div className={classes.title}>
             <div className={classes.dialogs}>
-                <h3>{props.titleDialog}</h3>
+                <h3>{props.titleDialog || 'Dialogs'}</h3>
+                {/*<h3>{'Dialogs'}</h3>*/}
                 {dialogsElements}
             </div>
             <div className={classes.messages}>
-                <h3>{props.titleMessage}</h3>
+                <h3>{props.titleMessage || 'Messages'}</h3>
+                {/*<h3>{'Messages'}</h3>*/}
                 {messagesElements}
-                <textarea value={props.newMessage}
-                          onChange={addMessageText}
+                <textarea
+                    value={props.newMessage}
+                    onChange={onChange}
                 />
                 <button onClick={addMessagePost}>send</button>
             </div>

@@ -1,89 +1,46 @@
 import React from "react";
-import {ActionTypes, DialogPropsType, MessagesPropsType} from "../../redux/state";
-import {addNewMessageAC, addNewMessagePostAC} from "../../redux/dialogs-page-reducer";
+import {DialogPropsType, MessagesPropsType} from "../../redux/state";
+import {addNewMessagePostAC, onChangeMessageAC} from "../../redux/dialogs-page-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-
-
-/*type DialogsContainerPropsType = {
-    titleDialog: string
-    titleMessage: string
-    dialogs: Array<DialogPropsType>
-    messages: Array<MessagesPropsType>
-    newMessage: string
-    dispatch: (action: ActionTypes) => void
-}
-
-export function DialogsContainer(props: DialogsContainerPropsType) {
-
-    const addMessageText = (text: string) => {
-        props.dispatch(addNewMessageAC(text))
-    }
-
-    const addMessagePost = () => {
-        if (props.newMessage) {
-            props.dispatch(addNewMessagePostAC(props.newMessage))
-        }
-
-    }
-
-    return (
-        <Dialogsret titleDialog={props.titleDialog}
-                 titleMessage={props.titleMessage}
-                 addMessagePost={addMessagePost}
-                 addMessageText={addMessageText}
-                 dialogs={props.dialogs}
-                 messages={props.messages}
-                 newMessage={props.newMessage}
-        />
-    )
-}*/
+import {Dispatch} from "redux";
 
 export type MapStateToPropsType = {
     dialogs: Array<DialogPropsType>
     messages: Array<MessagesPropsType>
     newMessage: string
-
 }
 export type MapDispatchToPropsType = {
-    addMessageText: (text: string) => void
-    addMessagePost: () => void
+    addNewMessagePost: () => void
+    onChangeMessage: (text: string) => void
+}
 
-}
-export type OwnPropsType = {
-    titleDialog: string,
-    titleMessage: string
-}
-export type PropsType = MapStateToPropsType & MapDispatchToPropsType & OwnPropsType
+// type PropsComponentType = {
+//     titleDialog: string
+//     titleMessage: string
+// }
+//
+// export type PropsType = MapStateToPropsType & MapDispatchToPropsType & PropsComponentType
+
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
         newMessage: state.dialogsPage.newMessage,
-
     }
-
 }
-const mapDispatchToProps = (dispatch: (action: ActionTypes) => void, state: AppStateType): MapDispatchToPropsType => {
+
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        addMessageText: (text: string) => {
-            dispatch(addNewMessageAC(text))
+        addNewMessagePost: () => {
+            dispatch(addNewMessagePostAC())
         },
-        addMessagePost: () => {
-            if (state.dialogsPage.newMessage) {
-                dispatch(addNewMessagePostAC(state.dialogsPage.newMessage))
-            }
-
-        }
-    }
-}
-const ownProps = () :OwnPropsType => {
-    return {
-        titleDialog: 'Dialogs',
-        titleMessage: 'Messages',
+        onChangeMessage: (text: string) => dispatch(onChangeMessageAC(text))
     }
 }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps, ownProps)(Dialogs)
+export const DialogsContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(
+    mapStateToProps, mapDispatchToProps
+)(Dialogs)

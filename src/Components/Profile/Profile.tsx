@@ -1,12 +1,12 @@
 import React from "react";
 import classes from './Profile.module.css'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionTypes, PostsPropsType} from "../../redux/state";
+import {PostsPropsType} from "../../redux/state";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 type ProfilePropsType = {
     posts: Array<PostsPropsType>
-    dispatch: (action: ActionTypes) => void
+    dispatch: any
     newPostMessage: string
 }
 

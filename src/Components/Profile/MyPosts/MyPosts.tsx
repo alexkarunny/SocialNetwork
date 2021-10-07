@@ -1,25 +1,25 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {PostsPropsType} from "../../../redux/state";
+import {PostsPropsType} from "../../../redux/profile-page-reducer";
 
-type MyPostsPropsType = {
-    post: Array<PostsPropsType>
-    addNewPostMessageOnChange: (text: string) => void
-    newPostMessage: string
+type PropsType = {
+    posts: PostsPropsType[]
+    onChangePost: (text: string) => void
+    newPost: string
     addPost: () => void
 }
 
-export function MyPosts(props: MyPostsPropsType) {
-    const post = props.post
-    const postElements = post.map(p => <Post message={p.message} likes={p.likes}/>)
+export function MyPosts(props: PropsType) {
+    const post = props.posts
+    const postElements = post.map((post, index) => <Post key={index} message={post.message} likes={post.likes}/>)
 
     const addPost = () => {
         props.addPost()
     }
 
-    const addNewPostMessageOnChange = ((e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.addNewPostMessageOnChange(e.currentTarget.value)
+    const OnChange = ((e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChangePost(e.currentTarget.value)
     })
 
     return (
@@ -27,8 +27,8 @@ export function MyPosts(props: MyPostsPropsType) {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea value={props.newPostMessage}
-                              onChange={addNewPostMessageOnChange}/>
+                    <textarea value={props.newPost}
+                              onChange={OnChange}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>

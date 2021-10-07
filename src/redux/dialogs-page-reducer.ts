@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 
-const ON_CHANGE_MESSAGE_POST = 'ON_CHANGE_MESSAGE_POST'
-const ADD_NEW_MESSAGE_POST = 'ADD_NEW_MESSAGE_POST'
+const ON_CHANGE_MESSAGE = 'ON_CHANGE_MESSAGE'
+const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE'
 
 export type DialogPropsType = {
     id: string
@@ -19,19 +19,19 @@ type PropsType = {
 
 export const onChangeMessageAC = (newMessageText: string) => {
     return {
-        type: ON_CHANGE_MESSAGE_POST,
+        type: ON_CHANGE_MESSAGE,
         newMessageText
     } as const
 }
-export const addNewMessagePostAC = () => {
+export const addNewMessageAC = () => {
     return {
-        type: ADD_NEW_MESSAGE_POST,
+        type: ADD_NEW_MESSAGE,
     } as const
 }
 
 type AllActionTypes =
     | ReturnType<typeof onChangeMessageAC>
-    | ReturnType<typeof addNewMessagePostAC>
+    | ReturnType<typeof addNewMessageAC>
 
 const initialState: PropsType = {
     newMessage: '',
@@ -53,10 +53,10 @@ const initialState: PropsType = {
 
 export const dialogsPageReducer = (state: PropsType = initialState, action: AllActionTypes) => {
     switch (action.type) {
-        case ON_CHANGE_MESSAGE_POST:
+        case ON_CHANGE_MESSAGE:
             state.newMessage = action.newMessageText
             return {...state};
-        case ADD_NEW_MESSAGE_POST:
+        case ADD_NEW_MESSAGE:
             const newMessage: MessagesPropsType = {id: v1(), message: state.newMessage}
             state.messages.push(newMessage)
             state.newMessage = ''

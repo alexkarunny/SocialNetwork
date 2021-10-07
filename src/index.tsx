@@ -12,9 +12,6 @@ ReactDOM.render(
     <Provider store={store}>
         <App
             linkItems={state.navbarPage.linkItems}
-            posts={state.profilePage.posts}
-            dispatch={store.dispatch.bind(store)}
-            newPostMessage={state.profilePage.newPostMessage}
         />
     </Provider>,
     document.getElementById('root')

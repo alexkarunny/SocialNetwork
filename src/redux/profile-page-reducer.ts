@@ -1,25 +1,32 @@
 import {v1} from "uuid";
-import {PostsPropsType, ProfilePagePropsType} from "./state";
 
 const ADD_POST = 'ADD_POST';
-const ADD_NEW_POST_MESSAGE = 'ADD_NEW_POST_MESSAGE';
+const ON_CHANGE_POST = 'ON_CHANGE_POST';
 
+export type PostsPropsType = {
+    id: string
+    message: string
+    likes: number
+}
+type PropsType = {
+    newPostMessage: string
+    posts: PostsPropsType[]
+}
 
-export const addPostAC = (postMessage: string) => {
+export const addPostAC = () => {
     return {
         type: ADD_POST,
-        postMessage: postMessage
     } as const
 }
 
-export const addNewPostMessageAC = (newPostText: string) => {
+export const onChangePostAC = (newPostText: string) => {
     return {
-        type: ADD_NEW_POST_MESSAGE,
-        newPostText: newPostText
+        type: ON_CHANGE_POST,
+        newPostText
     } as const
 }
 
-const initialState: ProfilePagePropsType = {
+const initialState: PropsType = {
     newPostMessage: '',
     posts: [
         {id: v1(), message: 'Hi, how are you', likes: 10},
@@ -30,17 +37,17 @@ const initialState: ProfilePagePropsType = {
 
 type AllActionType =
     | ReturnType<typeof addPostAC>
-    | ReturnType<typeof addNewPostMessageAC>
+    | ReturnType<typeof onChangePostAC>
 
-export const profilePageReducer = (state: ProfilePagePropsType = initialState, action: AllActionType) => {
+export const profilePageReducer = (state: PropsType = initialState, action: AllActionType) => {
 
     switch (action.type) {
         case ADD_POST:
-            const newPost: PostsPropsType = {id: v1(), message: action.postMessage, likes: 0}
+            const newPost: PostsPropsType = {id: v1(), message: state.newPostMessage, likes: 0}
             state.posts.push(newPost)
             state.newPostMessage = ''
             return {...state};
-        case ADD_NEW_POST_MESSAGE:
+        case ON_CHANGE_POST:
             state.newPostMessage = action.newPostText
             return {...state};
         default:

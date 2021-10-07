@@ -13,11 +13,11 @@ export type MessagesPropsType = {
     message: string
 }*/
 
-export type PostsPropsType = {
+/*export type PostsPropsType = {
     id: string
     message: string
     likes: number
-}
+}*/
 
 export type LinkItemsPropsType = {
     title: string
@@ -30,10 +30,10 @@ export type LinkItemsPropsType = {
     dialogs: Array<DialogPropsType>
 }*/
 
-export type ProfilePagePropsType = {
+/*export type ProfilePagePropsType = {
     newPostMessage: string
     posts: Array<PostsPropsType>
-}
+}*/
 
 export type NavbarPagePropsType = {
     linkItems: Array<LinkItemsPropsType>

@@ -1,5 +1,5 @@
 import {
-    addNewMessagePostAC,
+    addNewMessageAC,
     DialogPropsType,
     MessagesPropsType,
     onChangeMessageAC
@@ -9,12 +9,13 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 
-export type MapStateToPropsType = {
+type MapStateToPropsType = {
     dialogs: DialogPropsType[]
     messages: MessagesPropsType[]
     newMessage: string
 }
-export type MapDispatchToPropsType = {
+
+type MapDispatchToPropsType = {
     addNewMessagePost: () => void
     onChangeMessage: (text: string) => void
 }
@@ -30,7 +31,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         addNewMessagePost: () => {
-            dispatch(addNewMessagePostAC())
+            dispatch(addNewMessageAC())
         },
         onChangeMessage: (text: string) => dispatch(onChangeMessageAC(text))
     }

@@ -1,4 +1,3 @@
-// import {v1} from "uuid";
 // import {addNewMessageAC, addNewMessagePostAC, dialogsPageReducer} from "./dialogs-page-reducer";
 // import {navbarPageReducer} from "./navbar-page-reducer";
 // import {addNewPostMessageAC, addPostAC, profilePageReducer} from "./profile-page-reducer";
@@ -18,11 +17,11 @@ export type MessagesPropsType = {
     message: string
     likes: number
 }*/
-
+/*
 export type LinkItemsPropsType = {
     title: string
     link: string
-}
+}*/
 
 /*export type DialogsPagePropsType = {
     newMessage: string
@@ -35,9 +34,9 @@ export type LinkItemsPropsType = {
     posts: Array<PostsPropsType>
 }*/
 
-export type NavbarPagePropsType = {
+/*export type NavbarPagePropsType = {
     linkItems: Array<LinkItemsPropsType>
-}
+}*/
 
 /*export type RootStatePropsType = {
     profilePage: ProfilePagePropsType
@@ -114,7 +113,7 @@ export type NavbarPagePropsType = {
 //
 // }
 
-
+export {}
 
 
 

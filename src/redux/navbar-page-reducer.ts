@@ -1,4 +1,11 @@
-import {NavbarPagePropsType} from "./state";
+
+export type LinkItemsPropsType = {
+    title: string
+    link: string
+}
+type NavbarPagePropsType = {
+    linkItems: LinkItemsPropsType[]
+}
 
 const initialState: NavbarPagePropsType = {
     linkItems: [

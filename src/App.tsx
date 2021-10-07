@@ -7,8 +7,8 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
-import {LinkItemsPropsType} from "./redux/state";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+import {LinkItemsPropsType} from "./redux/navbar-page-reducer";
 
 
 export type AppPropsType = {

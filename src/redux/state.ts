@@ -3,7 +3,7 @@
 // import {navbarPageReducer} from "./navbar-page-reducer";
 // import {addNewPostMessageAC, addPostAC, profilePageReducer} from "./profile-page-reducer";
 
-export type DialogPropsType = {
+/*export type DialogPropsType = {
     id: string
     name: string
 }
@@ -11,7 +11,7 @@ export type DialogPropsType = {
 export type MessagesPropsType = {
     id: string
     message: string
-}
+}*/
 
 export type PostsPropsType = {
     id: string
@@ -24,11 +24,11 @@ export type LinkItemsPropsType = {
     link: string
 }
 
-export type DialogsPagePropsType = {
+/*export type DialogsPagePropsType = {
     newMessage: string
     messages: Array<MessagesPropsType>
     dialogs: Array<DialogPropsType>
-}
+}*/
 
 export type ProfilePagePropsType = {
     newPostMessage: string
@@ -39,11 +39,11 @@ export type NavbarPagePropsType = {
     linkItems: Array<LinkItemsPropsType>
 }
 
-export type RootStatePropsType = {
+/*export type RootStatePropsType = {
     profilePage: ProfilePagePropsType
     dialogsPage: DialogsPagePropsType
     navbarPage: NavbarPagePropsType
-}
+}*/
 
 // export type ActionTypes =
 //     ReturnType<typeof addPostAC>

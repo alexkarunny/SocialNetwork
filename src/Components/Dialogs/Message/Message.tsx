@@ -1,11 +1,11 @@
 import React from "react";
 import classes from './Message.module.css'
 
-type MessagePropsType = {
+type PropsType = {
     messageText: string
 }
 
-export function Message(props: MessagePropsType) {
+export function Message(props: PropsType) {
     return (
         <div className={classes.item}>{props.messageText}</div>
     )

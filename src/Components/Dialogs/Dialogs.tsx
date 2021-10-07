@@ -2,7 +2,8 @@ import React, {ChangeEvent} from "react";
 import classes from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
-import {DialogPropsType, MessagesPropsType} from "../../redux/state";
+import {DialogPropsType, MessagesPropsType} from "../../redux/dialogs-page-reducer";
+
 
 type PropsType = {
     titleDialog: string
@@ -33,12 +34,10 @@ export function Dialogs(props: PropsType) {
         <div className={classes.title}>
             <div className={classes.dialogs}>
                 <h3>{props.titleDialog || 'Dialogs'}</h3>
-                {/*<h3>{'Dialogs'}</h3>*/}
                 {dialogsElements}
             </div>
             <div className={classes.messages}>
                 <h3>{props.titleMessage || 'Messages'}</h3>
-                {/*<h3>{'Messages'}</h3>*/}
                 {messagesElements}
                 <textarea
                     value={props.newMessage}

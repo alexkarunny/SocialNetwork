@@ -43,11 +43,10 @@ export const profilePageReducer = (state: PropsType = initialState, action: AllA
 
     switch (action.type) {
         case ADD_POST:
-            const newPost: PostsPropsType = {id: v1(), message: state.newPostMessage, likes: 0}
             return {
                 ...state,
                 newPostMessage: '',
-                posts: [...state.posts, newPost],
+                posts: [...state.posts, {id: v1(), message: state.newPostMessage, likes: 0}],
             };
         case ON_CHANGE_POST:
             return {

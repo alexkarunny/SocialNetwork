@@ -2,15 +2,15 @@
 // import {navbarPageReducer} from "./navbar-page-reducer";
 // import {addNewPostMessageAC, addPostAC, profilePageReducer} from "./profile-page-reducer";
 
-/*export type DialogPropsType = {
-    id: string
-    name: string
-}
-
-export type MessagesPropsType = {
-    id: string
-    message: string
-}*/
+// export type DialogPropsType = {
+//     id: string
+//     name: string
+// }
+//
+// export type MessagesPropsType = {
+//     id: string
+//     message: string
+//}
 
 /*export type PostsPropsType = {
     id: string

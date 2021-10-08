@@ -15,7 +15,9 @@ export function MyPosts(props: PropsType) {
     const postElements = post.map((post, index) => <Post key={index} message={post.message} likes={post.likes}/>)
 
     const addPost = () => {
-        props.addPost()
+        if(props.newPost) {
+            props.addPost()
+        }
     }
 
     const OnChange = ((e: ChangeEvent<HTMLTextAreaElement>) => {

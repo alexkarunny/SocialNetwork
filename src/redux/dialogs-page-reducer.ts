@@ -54,13 +54,16 @@ const initialState: PropsType = {
 export const dialogsPageReducer = (state: PropsType = initialState, action: AllActionTypes) => {
     switch (action.type) {
         case ON_CHANGE_MESSAGE:
-            state.newMessage = action.newMessageText
-            return {...state};
+            return {
+                ...state,
+                newMessage: action.newMessageText
+            };
         case ADD_NEW_MESSAGE:
-            const newMessage: MessagesPropsType = {id: v1(), message: state.newMessage}
-            state.messages.push(newMessage)
-            state.newMessage = ''
-            return {...state};
+            return {
+                ...state,
+                newMessage: '',
+                messages: [...state.messages, {id: v1(), message: state.newMessage}]
+            };
         default:
             return state
     }

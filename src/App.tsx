@@ -9,6 +9,7 @@ import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {LinkItemsPropsType} from "./redux/navbar-page-reducer";
+import {Users} from "./Components/Users/Users";
 
 
 export type AppPropsType = {
@@ -33,6 +34,7 @@ function App(props: AppPropsType) {
                     <Route path={'/news'} render={() => <News title={'News'}/>}/>
                     <Route path={'/music'} render={() => <Music title={'Music'}/>}/>
                     <Route path={'/settings'} render={() => <Settings title={'Settings'}/>}/>
+                    <Route path={'/users'} render={() => <Users />}/>
                 </div>
             </div>
         </BrowserRouter>

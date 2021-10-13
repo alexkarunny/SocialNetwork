@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
     dialogsPage: dialogsPageReducer,
     navbarPage: navbarPageReducer,
     profilePage: profilePageReducer,
-    users: usersPageReducer
+    usersPage: usersPageReducer
 })
 
 export const store: Store<AppStateType> = createStore(rootReducer);

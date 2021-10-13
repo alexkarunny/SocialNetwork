@@ -8,11 +8,12 @@ type locationType = {
     city: string
     country: string
 }
-type usersPropsType = {
+export type usersPropsType = {
     id: string
     followed: boolean
     fullName: string
     status: string
+    photoUrl: string
     location: locationType
 }
 type PropsType = {
@@ -25,14 +26,8 @@ type AllActionType =
     | ReturnType<typeof setUsersAC>
 
 const initialState: PropsType = {
-    users: [
-        /*{id: v1(), followed: false, fullName: 'Alex', status: 'junior', location: {city: 'Minsk', country: 'Belarus'}},
-        {id: v1(), followed: false, fullName: 'Anatol', status: 'middle', location: {city: 'Lvov', country: 'Ukraine'}},
-        {id: v1(), followed: false, fullName: 'Petr', status: 'senior', location: {city: 'Vilnius', country: 'Lithuania'}},*/
-    ]
+    users: []
 }
-
-
 
 export const usersPageReducer = (state: PropsType = initialState, action: AllActionType): PropsType => {
     switch (action.type) {

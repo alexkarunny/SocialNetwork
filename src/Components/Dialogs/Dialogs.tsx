@@ -4,7 +4,6 @@ import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
 import {DialogPropsType, MessagesPropsType} from "../../redux/dialogs-page-reducer";
 
-
 type PropsType = {
     titleDialog: string
     titleMessage: string

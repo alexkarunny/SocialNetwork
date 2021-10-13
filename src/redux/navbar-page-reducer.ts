@@ -14,6 +14,7 @@ const initialState: NavbarPagePropsType = {
         {title: 'News', link: '/news'},
         {title: 'Music', link: '/music'},
         {title: 'Settings', link: '/settings'},
+        {title: 'Users', link: '/users'},
     ]
 }
 

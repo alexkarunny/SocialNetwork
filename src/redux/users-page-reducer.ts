@@ -1,23 +1,20 @@
-import {v1} from "uuid";
-
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
-type locationType = {
-    city: string
-    country: string
+type photosType = {
+    small: string
+    large: string
 }
-export type usersPropsType = {
+export type userPropsType = {
     id: string
     followed: boolean
-    fullName: string
+    name: string
     status: string
-    photoUrl: string
-    location: locationType
+    photos: photosType
 }
 type PropsType = {
-    users: usersPropsType[]
+    users: userPropsType[]
 }
 
 type AllActionType =
@@ -63,7 +60,7 @@ export const unfollowAC = (userID: string) => {
         userID
     } as const
 }
-export const setUsersAC = (users: usersPropsType[]) => {
+export const setUsersAC = (users: userPropsType[]) => {
     return {
         type: SET_USERS,
         users

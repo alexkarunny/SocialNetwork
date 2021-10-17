@@ -13,19 +13,22 @@ type PropsType = {
 }
 
 export function Users(props: PropsType) {
-    if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users', {
-            withCredentials: true,
-            headers: {
-                "API-KEY": "88c27098-d58c-439b-a5fb-d6a202fce25b"
-            }
-        })
-            .then(( resp: any )=> {
-                debugger;
-                props.setUsers(resp.data.items)
+    const getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users', {
+                withCredentials: true,
+                headers: {
+                    "API-KEY": "88c27098-d58c-439b-a5fb-d6a202fce25b"
+                }
             })
+                .then((resp: any) => {
+                    props.setUsers(resp.data.items)
+                })
+        }
     }
+
     return <div>
+        {props.users.length === 0 ? <button onClick={getUsers}>get Users</button> : ''}
         {
             props.users.map(user => <div key={user.id}>
                 <span>

@@ -4,7 +4,6 @@ import style from "./Users.module.css"
 import axios from "axios";
 import ava from '../../assets/images/ava.png'
 
-
 type PropsType = {
     users: userPropsType[]
     follow: (userID: string) => void
@@ -12,8 +11,9 @@ type PropsType = {
     setUsers: (users: userPropsType[]) => void
 }
 
-export function Users(props: PropsType) {
-    const getUsers = () => {
+export class Users extends React.Component<PropsType> {
+    constructor(props: PropsType) {
+        super(props);
         if (props.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users', {
                 withCredentials: true,
@@ -27,10 +27,10 @@ export function Users(props: PropsType) {
         }
     }
 
-    return <div>
-        {props.users.length === 0 ? <button onClick={getUsers}>get Users</button> : ''}
-        {
-            props.users.map(user => <div key={user.id}>
+    render() {
+        return <div>
+            {
+                this.props.users.map(user => <div key={user.id}>
                 <span>
                     <div>
                         <img src={user.photos.small !== null ? user.photos.small : ava} className={style.photoUser}
@@ -38,12 +38,12 @@ export function Users(props: PropsType) {
                     </div>
                     <div>
                         {(user.followed)
-                            ? <button onClick={() => props.unfollow(user.id)}>Follow</button>
-                            : <button onClick={() => props.follow(user.id)}>Unfollow</button>
+                            ? <button onClick={() => this.props.unfollow(user.id)}>Follow</button>
+                            : <button onClick={() => this.props.follow(user.id)}>Unfollow</button>
                         }
                     </div>
                 </span>
-                <span>
+                    <span>
                     <span>
                         <div>{user.name}</div>
                     </span>
@@ -51,7 +51,8 @@ export function Users(props: PropsType) {
                         <div>{user.status}</div>
                      </span>
                 </span>
-            </div>)
-        }
-    </div>
+                </div>)
+            }
+        </div>
+    }
 }

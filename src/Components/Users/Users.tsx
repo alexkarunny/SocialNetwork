@@ -12,9 +12,8 @@ type PropsType = {
 }
 
 export class Users extends React.Component<PropsType> {
-    constructor(props: PropsType) {
-        super(props);
-        if (props.users.length === 0) {
+    componentDidMount() {
+        if (this.props.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users', {
                 withCredentials: true,
                 headers: {
@@ -22,7 +21,7 @@ export class Users extends React.Component<PropsType> {
                 }
             })
                 .then((resp: any) => {
-                    props.setUsers(resp.data.items)
+                    this.props.setUsers(resp.data.items)
                 })
         }
     }

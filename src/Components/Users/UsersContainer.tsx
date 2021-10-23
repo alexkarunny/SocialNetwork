@@ -2,32 +2,20 @@ import {connect} from "react-redux";
 import {Users} from "./Users";
 import {AppStateType} from "../../redux/redux-store";
 import {
-    followAC,
+    follow,
     PagePropsType,
-    setPageAC,
-    setTotalUsersAC,
-    setUsersAC, toggleIsFetching,
-    unfollowAC,
+    setPage,
+    setTotalUsers,
+    setUsers,
+    toggleIsFetching,
+    unfollow,
     UserPropsType
 } from "../../redux/users-page-reducer";
-import {Dispatch} from "redux";
 import React from "react";
 import axios from "axios";
 import {Preloader} from "../common/Preloader/Preloader";
 
-type PropsType = {
-    users: UserPropsType[]
-    page: PagePropsType
-    isFetching: boolean
-    follow: (userID: string) => void
-    unfollow: (userID: string) => void
-    setUsers: (users: UserPropsType[]) => void
-    setPage: (currentPage: number) => void
-    setTotalUsers: (totalUsers: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-}
-
-export class UsersContainerAPI extends React.Component<PropsType> {
+export class UsersContainerAPI extends React.Component<MapStatePropsType & MapDispatchPropsType> {
     componentDidMount() {
         if (this.props.users.length === 0) {
             this.props.toggleIsFetching(true)
@@ -96,15 +84,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        follow: (userID) => dispatch(followAC(userID)),
-        unfollow: (userID) => dispatch(unfollowAC(userID)),
-        setUsers: (users) => dispatch(setUsersAC(users)),
-        setPage: (currentPage) => dispatch(setPageAC(currentPage)),
-        setTotalUsers: (totalUsers) => dispatch(setTotalUsersAC(totalUsers)),
-        toggleIsFetching: (isFetching) => dispatch(toggleIsFetching(isFetching))
-    }
-}
-
-export const UsersContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(UsersContainerAPI)
+export const UsersContainer = connect<MapStatePropsType, MapDispatchPropsType , {}, AppStateType>(mapStateToProps, { follow, unfollow, setUsers, setPage, setTotalUsers, toggleIsFetching })(UsersContainerAPI)

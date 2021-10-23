@@ -28,11 +28,11 @@ type PropsType = {
 }
 
 type AllActionType =
-    | ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setPageAC>
-    | ReturnType<typeof setTotalUsersAC>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setPage>
+    | ReturnType<typeof setTotalUsers>
     | ReturnType<typeof toggleIsFetching>
 
 const initialState: PropsType = {
@@ -88,31 +88,31 @@ export const usersPageReducer = (state: PropsType = initialState, action: AllAct
     }
 }
 
-export const followAC = (userID: string) => {
+export const follow = (userID: string) => {
     return {
         type: FOLLOW,
         userID
     } as const
 }
-export const unfollowAC = (userID: string) => {
+export const unfollow = (userID: string) => {
     return {
         type: UNFOLLOW,
         userID
     } as const
 }
-export const setUsersAC = (users: UserPropsType[]) => {
+export const setUsers = (users: UserPropsType[]) => {
     return {
         type: SET_USERS,
         users
     } as const
 }
-export const setPageAC = (currentPage: number) => {
+export const setPage = (currentPage: number) => {
     return {
         type: SET_PAGE,
         currentPage
     } as const
 }
-export const setTotalUsersAC = (totalUsers: number) => {
+export const setTotalUsers = (totalUsers: number) => {
     return {
         type: SET_TOTAL_USERS,
         totalUsers

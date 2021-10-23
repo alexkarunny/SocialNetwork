@@ -27,7 +27,9 @@ export function Users(props: PropsType) {
             pages.map((page, index) => {
                 return <span key={`${index}-${page} `}
                              className={`${page === props.page.currentPage ? style.currentPage : ''} ${style.page}`}
-                             onClick={() => {onPageChanged(page)}}
+                             onClick={() => {
+                                 onPageChanged(page)
+                             }}
                 >{page}</span>
             })
         }

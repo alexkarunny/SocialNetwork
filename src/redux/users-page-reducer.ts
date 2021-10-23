@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_PAGE = 'SET_PAGE';
 const SET_TOTAL_USERS = 'SET_TOTAL_USERS';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 type PhotosType = {
     small: string
@@ -23,6 +24,7 @@ export type PagePropsType = {
 type PropsType = {
     users: UserPropsType[]
     page: PagePropsType
+    isFetching: boolean
 }
 
 type AllActionType =
@@ -31,6 +33,7 @@ type AllActionType =
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof setPageAC>
     | ReturnType<typeof setTotalUsersAC>
+    | ReturnType<typeof toggleIsFetching>
 
 const initialState: PropsType = {
     users: [],
@@ -38,7 +41,8 @@ const initialState: PropsType = {
         currentPage: 1,
         pageSize: 100,
         totalUsers: 0
-    }
+    },
+    isFetching: false
 }
 
 export const usersPageReducer = (state: PropsType = initialState, action: AllActionType): PropsType => {
@@ -74,6 +78,11 @@ export const usersPageReducer = (state: PropsType = initialState, action: AllAct
                     totalUsers: action.totalUsers
                 }
             }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
         default:
             return state
     }
@@ -107,5 +116,11 @@ export const setTotalUsersAC = (totalUsers: number) => {
     return {
         type: SET_TOTAL_USERS,
         totalUsers
+    } as const
+}
+export const toggleIsFetching = (isFetching: boolean) => {
+    return {
+        type: TOGGLE_IS_FETCHING,
+        isFetching
     } as const
 }

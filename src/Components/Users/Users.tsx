@@ -1,7 +1,8 @@
 import React from "react";
 import {PagePropsType, UserPropsType} from "../../redux/users-page-reducer";
-import style from "./Users.module.css"
-import ava from '../../assets/images/ava.png'
+import style from "./Users.module.css";
+import ava from '../../assets/images/ava.png';
+import { NavLink } from "react-router-dom";
 
 type PropsType = {
     users: UserPropsType[]
@@ -37,8 +38,11 @@ export function Users(props: PropsType) {
             props.users.map(user => <div key={user.id}>
                 <span>
                     <div>
-                        <img src={user.photos.small !== null ? user.photos.small : ava} className={style.photoUser}
-                             alt='img'/>
+                        <NavLink to={'/profile'}>
+                            <img src={user.photos.small !== null ? user.photos.small : ava}
+                                 className={style.photoUser}
+                                 alt='img'/>
+                        </NavLink>
                     </div>
                     <div>
                         {(user.followed)

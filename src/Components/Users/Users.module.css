@@ -2,3 +2,13 @@
     width: 80px;
     height: 80px;
 }
+
+.currentPage {
+    font-weight: bold;
+    color: #f00;
+}
+
+.page {
+    cursor: pointer;
+    margin-right: 5px;
+}

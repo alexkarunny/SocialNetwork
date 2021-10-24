@@ -24,7 +24,7 @@ function App(props: AppPropsType) {
                 <Header/>
                 <Navbar navItem={props.linkItems}/>
                 <div className="app-wrapper-content">
-                    <Route path={'/profile'} render={() => <ProfileContainer/>}/>
+                    <Route path={'/profile/:userID'} render={() => <ProfileContainer/>}/>
                     <Route path={'/dialogs'} render={() => (
                         <DialogsContainer
                             titleDialog={'Dialogs'}

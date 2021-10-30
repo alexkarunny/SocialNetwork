@@ -39,7 +39,7 @@ const initialState: PropsType = {
     users: [],
     page: {
         currentPage: 1,
-        pageSize: 100,
+        pageSize: 10,
         totalUsers: 0
     },
     isFetching: false

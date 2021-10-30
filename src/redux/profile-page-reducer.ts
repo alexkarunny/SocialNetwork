@@ -89,7 +89,7 @@ export const onChangePostAC = (newPostText: string) => {
     } as const
 }
 
-export const setUserProfile = (profileInfo: ProfileInfoPropsType) => {
+    export const setUserProfile = (profileInfo: ProfileInfoPropsType) => {
     return {
         type: SET_USER_PROFILE,
         profileInfo

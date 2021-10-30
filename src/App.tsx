@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./Components/Header/Header";
 import {Navbar} from "./Components/Navbar/Navbar";
 import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./Components/News/News";
@@ -10,7 +9,7 @@ import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {LinkItemsPropsType} from "./redux/navbar-page-reducer";
 import {UsersContainer} from "./Components/Users/UsersContainer";
 import {ProfileContainer} from "./Components/Profile/ProfileContainer";
-
+import {HeaderContainer} from "./Components/Header/HeaderContainer";
 
 export type AppPropsType = {
     linkItems: Array<LinkItemsPropsType>
@@ -21,7 +20,7 @@ function App(props: AppPropsType) {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
-                <Header/>
+                <HeaderContainer />
                 <Navbar navItem={props.linkItems}/>
                 <div className="app-wrapper-content">
                     <Route path={'/profile/:userID'} render={() => <ProfileContainer/>}/>

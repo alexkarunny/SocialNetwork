@@ -13,13 +13,13 @@ import {
 } from "../../redux/users-page-reducer";
 import React from "react";
 import {Preloader} from "../common/Preloader/Preloader";
-import {getUsers} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 export class UsersContainerAPI extends React.Component<MapStatePropsType & MapDispatchPropsType> {
     componentDidMount() {
         if (this.props.users.length === 0) {
             this.props.toggleIsFetching(true)
-            getUsers(this.props.page.currentPage, this.props.page.pageSize)
+           usersAPI.getUsers(this.props.page.currentPage, this.props.page.pageSize)
                 .then((data: any) => {
                     this.props.setUsers(data.items)
                     this.props.setTotalUsers(data.totalCount)
@@ -31,7 +31,7 @@ export class UsersContainerAPI extends React.Component<MapStatePropsType & MapDi
     onPageChanged = (pageNumber: number) => {
         this.props.toggleIsFetching(true)
         this.props.setPage(pageNumber)
-        getUsers(pageNumber, this.props.page.pageSize)
+        usersAPI.getUsers(pageNumber, this.props.page.pageSize)
             .then((data: any) => {
                 this.props.setUsers(data.items)
                 this.props.toggleIsFetching(false)

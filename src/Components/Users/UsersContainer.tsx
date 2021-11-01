@@ -12,22 +12,17 @@ import {
     UserPropsType
 } from "../../redux/users-page-reducer";
 import React from "react";
-import axios from "axios";
 import {Preloader} from "../common/Preloader/Preloader";
+import {getUsers} from "../../api/api";
 
 export class UsersContainerAPI extends React.Component<MapStatePropsType & MapDispatchPropsType> {
     componentDidMount() {
         if (this.props.users.length === 0) {
             this.props.toggleIsFetching(true)
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page.currentPage}&count=${this.props.page.pageSize}`, {
-                withCredentials: true,
-                headers: {
-                    "API-KEY": "88c27098-d58c-439b-a5fb-d6a202fce25b"
-                }
-            })
-                .then((resp: any) => {
-                    this.props.setUsers(resp.data.items)
-                    this.props.setTotalUsers(resp.data.totalCount)
+            getUsers(this.props.page.currentPage, this.props.page.pageSize)
+                .then((data: any) => {
+                    this.props.setUsers(data.items)
+                    this.props.setTotalUsers(data.totalCount)
                     this.props.toggleIsFetching(false)
                 })
         }
@@ -36,14 +31,9 @@ export class UsersContainerAPI extends React.Component<MapStatePropsType & MapDi
     onPageChanged = (pageNumber: number) => {
         this.props.toggleIsFetching(true)
         this.props.setPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.page.pageSize}`, {
-            withCredentials: true,
-            headers: {
-                "API-KEY": "88c27098-d58c-439b-a5fb-d6a202fce25b"
-            }
-        })
-            .then((resp: any) => {
-                this.props.setUsers(resp.data.items)
+        getUsers(pageNumber, this.props.page.pageSize)
+            .then((data: any) => {
+                this.props.setUsers(data.items)
                 this.props.toggleIsFetching(false)
             })
     }

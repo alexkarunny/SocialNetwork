@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD_POST';
 const ON_CHANGE_POST = 'ON_CHANGE_POST';
@@ -94,4 +96,13 @@ export const onChangePostAC = (newPostText: string) => {
         type: SET_USER_PROFILE,
         profileInfo
     } as const
+}
+
+export const getUser = (userId: string) => {
+  return (dispatch: Dispatch) => {
+      usersAPI.getUser(userId)
+          .then((data: any) => {
+              dispatch(setUserProfile(data))
+          })
+  }
 }

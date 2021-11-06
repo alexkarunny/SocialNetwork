@@ -1,3 +1,5 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -41,4 +43,13 @@ export const setUserData = (data: UserDataProps) => {
         type: SET_USER_DATA,
         data
     } as const
+}
+
+export const getLogin = () => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getLogin()
+            .then((response: any) => {
+                dispatch(setUserData(response.data))
+            })
+    }
 }

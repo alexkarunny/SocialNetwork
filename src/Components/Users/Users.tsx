@@ -3,7 +3,6 @@ import {PagePropsType, UserPropsType} from "../../redux/users-page-reducer";
 import style from "./Users.module.css";
 import ava from '../../assets/images/ava.png';
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 
 type PropsType = {
     users: UserPropsType[]
@@ -12,7 +11,6 @@ type PropsType = {
     follow: (userID: string) => void
     unfollow: (userID: string) => void
     setPage: (currentPage: number) => void
-    toggleFollowingProgress: (isFetching: boolean, userID: string) => void
 }
 
 export function Users(props: PropsType) {
@@ -50,26 +48,12 @@ export function Users(props: PropsType) {
                     <div>
                         {(user.followed)
                             ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                                props.toggleFollowingProgress(true, user.id)
-                                usersAPI.unfollowUser(user.id)
-                                    .then((data: any) => {
-                                        if (data.resultCode === 0) {
-                                            props.unfollow(user.id)
-                                        }
-                                        props.toggleFollowingProgress(false, user.id)
-                                    })
+                                props.unfollow(user.id)
 
                             }
                             }>Unfollow</button>
                             : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                                props.toggleFollowingProgress(true, user.id)
-                                usersAPI.followUser(user.id)
-                                    .then((data: any) => {
-                                        if (data.resultCode === 0) {
-                                            props.follow(user.id)
-                                        }
-                                        props.toggleFollowingProgress(false, user.id)
-                                    })
+                                props.follow(user.id)
                             }
                             }>Follow</button>
                         }

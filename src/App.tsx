@@ -10,6 +10,7 @@ import {LinkItemsPropsType} from "./redux/navbar-page-reducer";
 import {UsersContainer} from "./Components/Users/UsersContainer";
 import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 import {HeaderContainer} from "./Components/Header/HeaderContainer";
+import {Login} from "./Components/Login/Login";
 
 export type AppPropsType = {
     linkItems: Array<LinkItemsPropsType>
@@ -34,6 +35,7 @@ function App(props: AppPropsType) {
                     <Route path={'/music'} render={() => <Music title={'Music'}/>}/>
                     <Route path={'/settings'} render={() => <Settings title={'Settings'}/>}/>
                     <Route path={'/users'} render={() => <UsersContainer/>}/>
+                    <Route path={'/login'} render={() => <Login />}/>
                 </div>
             </div>
         </BrowserRouter>

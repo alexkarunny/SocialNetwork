@@ -2,19 +2,10 @@ import React, {ChangeEvent} from "react";
 import classes from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
-import {DialogPropsType, MessagesPropsType} from "../../redux/dialogs-page-reducer";
+import {DialogsPropsType} from "./DialogsContainer";
+import {Redirect} from "react-router-dom";
 
-type PropsType = {
-    titleDialog: string
-    titleMessage: string
-    dialogs: DialogPropsType[]
-    messages: MessagesPropsType[]
-    newMessage: string
-    addNewMessagePost: () => void
-    onChangeMessage: (text: string) => void
-}
-
-export function Dialogs(props: PropsType) {
+export function Dialogs(props: DialogsPropsType ) {
     const dialogs = props.dialogs
     const messages = props.messages
 
@@ -27,6 +18,10 @@ export function Dialogs(props: PropsType) {
 
     const addMessagePost = () => {
         props.addNewMessagePost()
+    }
+
+    if(!props.isAuth) {
+        return <Redirect to={'/login'}/>
     }
 
     return (

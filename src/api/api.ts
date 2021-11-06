@@ -24,10 +24,12 @@ export const usersAPI = {
     unfollowUser(userId: string) {
         return instance.delete(`follow/${userId}`)
             .then((response: AxiosResponse) => response.data)
-    },
-    getLogin() {
+    }
+}
+
+export const authApi = {
+    me() {
         return instance.get(`auth/me`)
             .then((response: AxiosResponse) => response.data)
     }
 }
-

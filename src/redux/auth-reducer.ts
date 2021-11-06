@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {authApi} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -34,7 +34,8 @@ export const authReducer = (state: AuthPropsType = initialState, action: ActionT
                 userData: {...state.userData, ...action.data},
                 isAuth: true
             }
-        default: return state
+        default:
+            return state
     }
 }
 
@@ -47,9 +48,12 @@ export const setUserData = (data: UserDataProps) => {
 
 export const getLogin = () => {
     return (dispatch: Dispatch) => {
-        usersAPI.getLogin()
+        authApi.me()
             .then((response: any) => {
-                dispatch(setUserData(response.data))
+                debugger
+                if (response.resultCode === 0) {
+                    dispatch(setUserData(response.data))
+                }
             })
     }
 }

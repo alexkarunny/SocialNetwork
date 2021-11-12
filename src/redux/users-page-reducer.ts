@@ -151,9 +151,10 @@ export const getUsers = (currentPage: number, pageSize: number) => {
         dispatch(toggleIsFetching(true))
         dispatch(setPage(currentPage))
         usersAPI.getUsers(currentPage, pageSize)
-            .then((data: any) => {
-                dispatch(setUsers(data.items))
-                dispatch(setTotalUsers(data.totalCount))
+            .then((response) => {
+                debugger
+                dispatch(setUsers(response.data.items))
+                dispatch(setTotalUsers(response.data.totalCount))
                 dispatch(toggleIsFetching(false))
             })
     }
@@ -176,8 +177,9 @@ export const follow = (userId: string) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersAPI.followUser(userId)
-            .then((data: any) => {
-                if (data.resultCode === 0) {
+            .then((response) => {
+                debugger
+                if (response.data.resultCode === 0) {
                     dispatch(followSuccess(userId))
                 }
                 dispatch(toggleFollowingProgress(false, userId))

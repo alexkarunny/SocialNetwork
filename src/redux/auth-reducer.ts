@@ -49,10 +49,9 @@ export const setUserData = (data: UserDataProps) => {
 export const getLogin = () => {
     return (dispatch: Dispatch) => {
         authApi.me()
-            .then((response: any) => {
-                debugger
-                if (response.resultCode === 0) {
-                    dispatch(setUserData(response.data))
+            .then((response) => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setUserData(response.data.data))
                 }
             })
     }

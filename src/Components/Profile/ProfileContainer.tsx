@@ -1,7 +1,7 @@
 import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {getUser, ProfileInfoPropsType} from "../../redux/profile-page-reducer";
+import {getProfile, ProfileInfoPropsType} from "../../redux/profile-page-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 
@@ -16,7 +16,7 @@ type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 export class ProfileContainerAPI extends React.Component<PropsType> {
     componentDidMount() {
         let userID = this.props.match.params.userID
-        this.props.getUser(userID)
+        this.props.getProfile(userID)
     }
 
     render() {
@@ -33,7 +33,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    getUser: (userId: string) => void
+    getProfile: (userId: string) => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
@@ -45,7 +45,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 const WithURLDataContainerComponent = withRouter(ProfileContainerAPI)
 
-export const ProfileContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {getUser})(WithURLDataContainerComponent)
+export const ProfileContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {getProfile})(WithURLDataContainerComponent)
 
 
 

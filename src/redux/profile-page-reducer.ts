@@ -98,11 +98,11 @@ export const onChangePostAC = (newPostText: string) => {
     } as const
 }
 
-export const getUser = (userId: string) => {
+export const getProfile = (userId: string) => {
   return (dispatch: Dispatch) => {
-      usersAPI.getUser(userId)
-          .then((data: any) => {
-              dispatch(setUserProfile(data))
+      usersAPI.getProfile(userId)
+          .then((response) => {
+              dispatch(setUserProfile(response.data))
           })
   }
 }

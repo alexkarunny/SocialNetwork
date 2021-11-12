@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import classes from './Header.module.css';
 import {AuthPropsType} from "../../redux/auth-reducer";
+import logo from '../../assets/images/logo.png'
 
 type PropsType = {
     authInfo: AuthPropsType
@@ -11,7 +12,7 @@ export function Header(props: PropsType) {
     return(
         <header className={classes.header}>
             <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX47gEOGCvxd42k4jH-Nv_-Yw2CfIjylnhVi4aV8Yr8TP3NrBOtzq7gnKVYeTBkYJXlEE&usqp=CAU"
+                src={logo}
                 alt=""/>
             <div className={classes.loginBlock}>
                 {

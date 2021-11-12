@@ -1,4 +1,7 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
+import {ProfileInfoPropsType} from "../redux/profile-page-reducer";
+import {UserDataProps} from "../redux/auth-reducer";
+import {UserPropsType} from "../redux/users-page-reducer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -8,28 +11,36 @@ const instance = axios.create({
     }
 })
 
+type AuthMeFollowUserResponseType<T = {}> = {
+    data: T
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: number
+}
+
+type GetUsersResponseType = {
+    items: UserPropsType[]
+    error: string
+    totalCount: number
+}
+
 export const usersAPI = {
-    getUser(userId: string) {
-        return instance.get(`profile/${userId}`)
-            .then((response: AxiosResponse) => response.data)
+    getProfile(userId: string) {
+        return instance.get<ProfileInfoPropsType>(`profile/${userId}`)
     },
     getUsers(currentPage: number = 1, pageSize: number = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-            .then((response: AxiosResponse) => response.data)
+        return instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}`)
     },
     followUser(userId: string) {
-        return instance.post(`follow/${userId}`, {})
-            .then((response: AxiosResponse) => response.data)
+        return instance.post<AuthMeFollowUserResponseType>(`follow/${userId}`, {})
     },
     unfollowUser(userId: string) {
-        return instance.delete(`follow/${userId}`)
-            .then((response: AxiosResponse) => response.data)
+        return instance.delete<AuthMeFollowUserResponseType>(`follow/${userId}`)
     }
 }
 
 export const authApi = {
     me() {
-        return instance.get(`auth/me`)
-            .then((response: AxiosResponse) => response.data)
+        return instance.get<AuthMeFollowUserResponseType<UserDataProps>>(`auth/me`)
     }
 }

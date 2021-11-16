@@ -9,8 +9,6 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 
-
-
 export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType & OwnProps
 
 type OwnProps = {

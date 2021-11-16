@@ -8,7 +8,7 @@ import {Settings} from "./Components/Settings/Settings";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {LinkItemsPropsType} from "./redux/navbar-page-reducer";
 import {UsersContainer} from "./Components/Users/UsersContainer";
-import {ProfileContainer} from "./Components/Profile/ProfileContainer";
+import WithURLDataContainerComponent from "./Components/Profile/ProfileContainer";
 import {HeaderContainer} from "./Components/Header/HeaderContainer";
 import {Login} from "./Components/Login/Login";
 
@@ -24,7 +24,7 @@ function App(props: AppPropsType) {
                 <HeaderContainer />
                 <Navbar navItem={props.linkItems}/>
                 <div className="app-wrapper-content">
-                    <Route path={'/profile/:userID'} render={() => <ProfileContainer/>}/>
+                    <Route path={'/profile/:userID'} render={() => <WithURLDataContainerComponent/>}/>
                     <Route path={'/dialogs'} render={() => (
                         <DialogsContainer
                             titleDialog={'Dialogs'}

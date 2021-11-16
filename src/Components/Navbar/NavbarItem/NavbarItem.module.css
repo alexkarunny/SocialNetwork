@@ -7,3 +7,7 @@
 .item a.activeLink {
     color: gold;
 }
+
+.item a:hover {
+    background-color: red;
+}

@@ -5,12 +5,13 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
-import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {LinkItemsPropsType} from "./redux/navbar-page-reducer";
 import {UsersContainer} from "./Components/Users/UsersContainer";
 import WithURLDataContainerComponent from "./Components/Profile/ProfileContainer";
 import {HeaderContainer} from "./Components/Header/HeaderContainer";
 import {Login} from "./Components/Login/Login";
+import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+
 
 export type AppPropsType = {
     linkItems: Array<LinkItemsPropsType>
@@ -27,8 +28,8 @@ function App(props: AppPropsType) {
                     <Route path={'/profile/:userID'} render={() => <WithURLDataContainerComponent/>}/>
                     <Route path={'/dialogs'} render={() => (
                         <DialogsContainer
-                            titleDialog={'Dialogs'}
-                            titleMessage={'Messages'}
+                            //titleDialog={'Dialogs'}
+                            //titleMessage={'Messages'}
                         />)}
                     />
                     <Route path={'/news'} render={() => <News title={'News'}/>}/>

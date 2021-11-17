@@ -6,11 +6,11 @@ import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {LinkItemsPropsType} from "./redux/navbar-page-reducer";
-import {UsersContainer} from "./Components/Users/UsersContainer";
-import WithURLDataContainerComponent from "./Components/Profile/ProfileContainer";
 import {HeaderContainer} from "./Components/Header/HeaderContainer";
 import {Login} from "./Components/Login/Login";
-import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+import Dialogs from "./Components/Dialogs/DialogsContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
+import {UsersContainer} from "./Components/Users/UsersContainer";
 
 
 export type AppPropsType = {
@@ -25,13 +25,8 @@ function App(props: AppPropsType) {
                 <HeaderContainer />
                 <Navbar navItem={props.linkItems}/>
                 <div className="app-wrapper-content">
-                    <Route path={'/profile/:userID'} render={() => <WithURLDataContainerComponent/>}/>
-                    <Route path={'/dialogs'} render={() => (
-                        <DialogsContainer
-                            //titleDialog={'Dialogs'}
-                            //titleMessage={'Messages'}
-                        />)}
-                    />
+                    <Route path={'/profile/:userID'} render={() => <ProfileContainer/>}/>
+                    <Route path={'/dialogs'} render={() => (<Dialogs/>)}/>
                     <Route path={'/news'} render={() => <News title={'News'}/>}/>
                     <Route path={'/music'} render={() => <Music title={'Music'}/>}/>
                     <Route path={'/settings'} render={() => <Settings title={'Settings'}/>}/>

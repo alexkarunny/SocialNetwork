@@ -22,11 +22,11 @@ export function Dialogs(props: DialogsPropsType ) {
     return (
         <div className={classes.title}>
             <div className={classes.dialogs}>
-                <h3>{props.titleDialog || 'Dialogs'}</h3>
+                <h3>{'Dialogs'}</h3>
                 {dialogsElements}
             </div>
             <div className={classes.messages}>
-                <h3>{props.titleMessage || 'Messages'}</h3>
+                <h3>{'Messages'}</h3>
                 {messagesElements}
                 <textarea
                     value={props.newMessage}
